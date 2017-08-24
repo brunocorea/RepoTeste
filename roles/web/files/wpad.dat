@@ -1,0 +1,200 @@
+function FindProxyForURL(url, host)
+
+/*Netshoes Brasil - WPAD File v17/08/2017 */
+
+/* Normalizacao de URL
+url = url.toLowerCase();
+host = host.toLowerCase();
+
+/* Nao usar Proxy Host Local */
+{
+if (isPlainHostName(host))
+{
+return 'DIRECT';
+}
+
+/* Nao Usar Proxy dominio Netshoes*/
+
+if (shExpMatch(url, "https://mail.netshoes.com*"))
+{
+return 'DIRECT';
+}
+
+
+if ((host == "186.234.212.29") ||
+(host == "201.16.178.212") ||
+(host == "200.162.134.167") ||
+(host == "201.16.178.208") ||
+(host == "200.233.140.225") ||
+
+dnsDomainIs(host, "office365.com") ||
+dnsDomainIs(host, "outlook.office365.com") ||
+dnsDomainIs(host, "office.com") ||
+dnsDomainIs(host, "onmicrosoft.com") ||
+dnsDomainIs(host, "live.com") ||
+dnsDomainIs(host, "sip.netshoes.com") ||
+dnsDomainIs(host, "sip.netshoes.local") ||
+dnsDomainIs(host, "mail.netshoes.local") ||
+dnsDomainIs(host, "ocsp.thawte.com") ||
+dnsDomainIs(host, ".soycuervo.com") ||
+dnsDomainIs(host, ".netshoes.local") ||
+dnsDomainIs(host, "casarray.netshoes.com") ||
+dnsDomainIs(host, "autodiscovery.netshoes.com") ||
+dnsDomainIs(host, ".ns2online.com") ||
+dnsDomainIs(host, ".facebook.com") ||
+dnsDomainIs(host, ".ns3online.com") ||
+dnsDomainIs(host, ".ns4online.com") ||
+dnsDomainIs(host, ".abacosns.local") ||
+dnsDomainIs(host, ".netshoes-ar.resultspage.com") ||
+dnsDomainIs(host, ".netshoes-mx.resultspage.com") ||
+dnsDomainIs(host, ".ns1.exacttarget.com") ||
+dnsDomainIs(host, ".ns2.exacttarget.com") ||
+dnsDomainIs(host, ".netshoes.edgesuite.net") ||
+dnsDomainIs(host, ".netshoesnatal.com") ||
+dnsDomainIs(host, ".netshoesnatal.net") ||
+dnsDomainIs(host, ".netshoes.aceite.fbiz.com.br") ||
+dnsDomainIs(host, "leaftaxcloud.com.br") ||
+dnsDomainIs(host, ".shoptimao.com.br") ||
+dnsDomainIs(host, ".saopaulomania.com.br") ||
+dnsDomainIs(host, ".shopcruzeiro.com.br") ||
+dnsDomainIs(host, ".loja.havaianas.com.br") ||
+dnsDomainIs(host, ".lojagloboesporte.com") ||
+dnsDomainIs(host, ".viladosantos.com.br") ||
+dnsDomainIs(host, ".mundopalmeiras.com.br") ||
+dnsDomainIs(host, ".loja.topper.com.br") ||
+dnsDomainIs(host, ".shop.brasil.puma.com") ||
+dnsDomainIs(host, ".gigantedacolina.com.br") ||
+dnsDomainIs(host, ".lojanba.com") ||
+dnsDomainIs(host, ".coritibastore.com.br") ||
+dnsDomainIs(host, ".store.oakley.com.br") ||
+dnsDomainIs(host, ".shoppingbradescocartoes.com.br") ||
+dnsDomainIs(host, ".loja88.com.br") ||
+dnsDomainIs(host, ".loja.mizunobr.com.br") ||
+dnsDomainIs(host, ".ufcstore.com.br") ||
+dnsDomainIs(host, ".lojadointer.com.br") ||
+dnsDomainIs(host, ".arenaselecao.com") ||
+dnsDomainIs(host, ".tiendarayados.mx") ||
+dnsDomainIs(host, ".tiendaspuma.com") ||
+dnsDomainIs(host, ".tiendacruzazulononline.com.mx") ||
+dnsDomainIs(host, ".tiendaoficialamerica.com") ||
+dnsDomainIs(host, ".tiendachivas.com.mx") ||
+dnsDomainIs(host, ".nbatienda.com") ||
+dnsDomainIs(host, ".slack.com")||
+dnsDomainIs(host, "livestream.com")||
+dnsDomainIs(host, ".slack-imgs.com")||
+dnsDomainIs(host, ".slack-msgs.com")||
+dnsDomainIs(host, ".slack-core.com")||
+dnsDomainIs(host, ".tellfree.com.br")||
+dnsDomainIs(host, ".tellfree.net")||
+dnsDomainIs(host, ".netshoes.com.br")||
+dnsDomainIs(host, ".zattini.com.br")||
+dnsDomainIs(host, "qa.b2b.pontosmultiplus.com.br")||
+dnsDomainIs(host, "extratoexpress.com.br")||
+dnsDomainIs(host, "grixco.dyndns.ws")||
+dnsDomainIs(host, "directtalk.com.br")||
+dnsDomainIs(host, "dtbot.directtalk.com.br")|
+dnsDomainIs(host, ".microsoftonline.com") ||
+dnsDomainIs(host, ".microsoftonline-p.com") ||
+dnsDomainIs(host, ".sharepoint.com") ||
+dnsDomainIs(host, ".outlook.com") ||
+dnsDomainIs(host, ".lync.com") ||
+dnsDomainIs(host, "osub.microsoft.com") ||
+dnsDomainIs(host, "sipdir.online.lync.com") ||
+dnsDomainIs(host, ".netshoes.net") ||
+dnsDomainIs(host, ".cazadosport.com.br") ||
+dnsDomainIs(host, ".santostore.com.br") ||
+dnsDomainIs(host, ".shopvasco.com.br") ||
+dnsDomainIs(host, ".shoestock.com.br") ||
+dnsDomainIs(host, ".lojadachape.com.br") ||
+dnsDomainIs(host, ".olympikus.com.br") ||
+dnsDomainIs(host, ".asics.com.br") ||
+dnsDomainIs(host, ".chaordicsystems.com") ||
+dnsDomainIs(host, "banco.bradesco") ||
+dnsDomainIs(host, "global.ssl.fastly.net"))
+
+{
+return 'DIRECT';
+}
+
+if (isResolvable(host))
+{
+var hostIP = dnsResolve(host);
+
+if (shExpMatch(url, "https://mail.netshoes.com"))
+
+{
+return 'DIRECT';
+}
+
+/* Nao usar proxy para enderecos nao roteaveis (RFC 3330) */
+if (isInNet(hostIP, '0.0.0.0', '255.0.0.0') ||
+isInNet(hostIP, '10.0.0.0', '255.0.0.0') ||
+isInNet(hostIP, '127.0.0.0', '255.0.0.0') ||
+isInNet(hostIP, '169.254.0.0', '255.255.0.0') ||
+isInNet(hostIP, '172.16.0.0', '255.240.0.0') ||
+isInNet(hostIP, '192.0.2.0', '255.255.255.0') ||
+isInNet(hostIP, '192.88.99.0', '255.255.255.0') ||
+isInNet(hostIP, '192.168.0.0', '255.255.0.0') ||
+isInNet(hostIP, '198.18.0.0', '255.254.0.0') ||
+isInNet(hostIP, '224.0.0.0', '240.0.0.0') ||
+isInNet(hostIP, '240.0.0.0', '240.0.0.0') ||
+isInNet(hostIP, '169.254.0.0', '255.255.0.0') ||
+isInNet(hostIP, '172.16.0.0', '255.240.0.0') ||
+isInNet(hostIP, '177.105.67.56', '255.255.255.248') ||
+isInNet(hostIP, '181.30.7.128', '255.255.255.248') ||
+isInNet(hostIP, '186.231.3.168', '255.255.255.248') ||
+isInNet(hostIP, '186.231.66.32', '255.255.255.248') ||
+isInNet(hostIP, '187.17.75.128', '255.255.255.128') ||
+isInNet(hostIP, '187.61.25.0', '255.255.255.0') ||
+isInNet(hostIP, '187.61.48.248', '255.255.255.248') ||
+isInNet(hostIP, '187.61.54.32', '255.255.255.224') ||
+isInNet(hostIP, '187.61.54.64', '255.255.255.224') ||
+isInNet(hostIP, '187.103.66.160', '255.255.255.248') ||
+isInNet(hostIP, '187.103.66.204', '255.255.255.252') ||
+isInNet(hostIP, '187.103.67.72', '255.255.255.252') ||
+isInNet(hostIP, '187.210.14.80', '255.255.255.240') ||
+isInNet(hostIP, '189.36.27.0', '255.255.255.0') ||
+isInNet(hostIP, '189.36.28.0', '255.255.255.0') ||
+isInNet(hostIP, '189.36.28.0', '255.255.255.128') ||
+isInNet(hostIP, '189.36.28.128', '255.255.255.192') ||
+isInNet(hostIP, '189.36.29.0', '255.255.255.0') ||
+isInNet(hostIP, '189.51.7.128', '255.255.255.248') ||
+isInNet(hostIP, '189.56.61.40', '255.255.255.248') ||
+isInNet(hostIP, '189.115.178.144', '255.255.255.248') ||
+isInNet(hostIP, '189.125.37.96', '255.255.255.248') ||
+isInNet(hostIP, '189.203.208.188', '255.255.255.252') ||
+isInNet(hostIP, '189.206.59.184', '255.255.255.248') ||
+isInNet(hostIP, '190.220.147.72', '255.255.255.248') ||
+isInNet(hostIP, '190.111.233.24', '255.255.255.248') ||
+isInNet(hostIP, '190.221.171.208', '255.255.255.248') ||
+isInNet(hostIP, '192.0.2.0', '255.255.255.0') ||
+isInNet(hostIP, '192.88.99.0', '255.255.255.0') ||
+isInNet(hostIP, '198.18.0.0', '255.254.0.0') ||
+isInNet(hostIP, '200.99.205.208', '255.255.255.240') ||
+isInNet(hostIP, '200.162.134.160', '255.255.255.224') ||
+isInNet(hostIP, '200.168.202.0', '255.255.255.248') ||
+isInNet(hostIP, '200.198.77.224', '255.255.255.240') ||
+isInNet(hostIP, '198.18.0.0', '255.254.0.0') ||
+isInNet(hostIP, '201.16.178.192', '255.255.255.224') ||
+isInNet(hostIP, '201.149.84.96', '255.255.255.248') ||
+isInNet(hostIP, '240.0.0.0', '240.0.0.0'))
+{
+return 'DIRECT';
+}
+
+/* Não usar proxy para endereço local.*/
+if (false)
+{
+return 'DIRECT';
+}
+}
+
+if (url.substring(0, 5) == 'http:' ||
+url.substring(0, 6) == 'https:' ||
+url.substring(0, 4) == 'ftp:')
+{
+return 'PROXY 10.135.0.200:8080';
+}
+
+return 'DIRECT';
+}
